@@ -96,11 +96,132 @@
                         background-color: green;
                     }
             
+            /* css properties */
+                #box-properties {
+                    height: 10px;
+                    width: 500px;
+                    padding: 20px;
+                    border: 5px solid red;
+                    margin: 20px;
+
+
+                    padding-left: 0; padding-inline-start: 0;
+                    padding-right: 0; padding-inline-end: 0;
+                    padding-top: 0; padding-block-start: 0;
+                    padding-bottom: 0; padding-block-end: 0;
+                    padding-inline: 0;
+                    padding-block: 0;
+                    padding: 0;
+
+                    padding: 20px;
+                    padding: 10px 20px;
+                    padding: 10px 20px 30px 40px;
+
+                    border-radius: 30px;
+                    border-color: #000;
+                    border-style: dashed;
+                    border: 2px;
+                }
+
+                #layout {
+                    display: block;
+                    display: inline;
+                    display: inline-block;
+
+                    display: grid;
+                    display: flex;
+                }
+
+                nav{
+                    border: 5px solid red;
+                    height: 100px;
+
+                    display: flex;
+                    flex-direction: row;
+                    align-items:center;
+                    justify-content:space-evenly;
+                }
+
+                #text-properties {
+                    font-size: 0;
+                    color: 0;
+                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    text-decoration: underline;
+                    font-weight: bold;
+                    font-style: italic;
+                }
+
+                #list-properties {
+                    list-style-type: greek;
+                    list-style: ;
+                    list-style-image: url("");
+                    list-style-type: none;
+                }
             /* pseudo classes */
+                a{
+                    color: blue;
+                }
+                a:active {
+                    color: blue;
+                }
+                a:hover {
+                    color: pink;
+                }
+                a:visited {
+                    color: blueviolet;
+                }
+
+                ol li:first-child {
+                    font-size: 30px;
+                }
+                ol li:last-child {}
+                ol li:only-child {}
+                ul li:first-of-type {
+                    color: blue;
+                }
+                ul li:nth-of-type() {
+                    font-size: 30px;
+                }
 
             /* css animations */
+                #box {
+                    height: 200px;
+                    width: 200px;
+                    background-color: green;
+                    animation-name: box-animation;
+                    animation-duration: 3s;
+                    animation-iteration-count:infinite;
+                    animation-delay: 1s;
+                    animation-direction:alternate;
+                    animation-timing-function:ease-in-out;
+                }
+
+                @keyframes box-animation {
+                    0% {margin-left: 0px;}
+                    100% {margin-left: 100%;}
+                }
 
             /* responsive web dev */
+                @media only screen and (max-width:1400px) {
+                    body {
+                        background-color: chocolate;
+                    }
+                }
+                @media only screen and (max-width:1000px) {
+                    body {
+                        background-color: red;
+                    }
+                }
+                @media only screen and (max-width:800px) {
+                    body {
+                        background-color: green;
+                    }
+                }
+                @media only screen and (max-width:400px) {
+                    body {
+                        background-color: blue;
+                    }
+                }
 
             
         </style>
@@ -110,6 +231,12 @@
         </script>
     </head>
     <body>
+        <div id="box"></div>
+        <nav>
+            <li><a href="./index.html">Home Page</a></li>
+            <li><a href="./firstwebsite.html">First Website</a></li>
+            <li><a href="./external.css">CSS Page</a></li>
+        </nav>
         <!-- html comment -->
             <section id="john">
                 <section id="tom">
