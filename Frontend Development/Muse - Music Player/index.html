@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muse - Music Player</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .song-profile {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .song-profile-img {
+            height: 8vh;
+            border-radius: 10px;
+        }
+        .song-details {
+            margin-left: 5px;
+            margin-right: 5vw;
+            white-space: nowrap;
+        }
+        .song-details div:nth-of-type(1){
+            font-size: 20px;   
+            color: #dbdbde;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .song-details div:nth-of-type(2){
+            font-size: 15px;
+            color: #a09db7;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            background-color: #1d1b2d;
+            padding: 10px;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+    </style>
+</head>
+<body>
+    <section id="homepage">
+        <nav></nav>
+        <main>
+            <header>
+                <nav></nav>
+                <div id="userarea">
+                    <div id="hero-section"></div>
+                    <div id="song-lists"></div>
+                </div>
+            </header>
+            <div id="music-section">
+                <div id="song-area"></div>
+                <aside></aside>
+            </div>
+        </main>
+    </section>
+
+    <!-- footer section -->
+    <footer>
+        <div class="song-profile">
+            <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+            <div class="song-details">
+                <div>Enemy</div>
+                <div>Imagine Dragons</div>
+            </div>
+            <span class="song-views">30% APR</span>
+        </div>
+        <div id="music-controls">
+            <i class="fa-solid fa-backward-step"></i>
+            <i class="fa-solid fa-play"></i>
+            <i class="fa-solid fa-pause"></i>
+            <i class="fa-solid fa-forward-step"></i>
+        </div>
+        <input type="range" id="music-track" max="1000" min="0" />
+        <div id="wishlist-control">
+            <i id="add-to-wishlist" class="fa-solid fa-heart"></i>
+            <i id="remove-from-wishlist" class="fa-regular fa-heart"></i>
+        </div>
+        <div id="audio-controls">
+            <i class="fa-solid fa-volume-low"></i>
+            <input type="range" id="volumn-track" max="100" min="0" />
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/9e2c9fd14a.js" crossorigin="anonymous"></script>
+</body>
+</html>
