@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#homepage {
+    display: flex;
+    height: 92vh;
+    justify-content: space-between;
+}
+#homepage>nav {
+    background-color: #2f2b45;
+    width: 15vw;
+}
+#homepage>nav img {
+    height: 3vw;
+    margin-top: 10px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+#homepage>nav div {
+    margin-top: 30px;
+    margin-left: 10px;
+}
+#homepage>nav h2 {
+    margin-left: 30px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    color: #a09db7;
+}
+#homepage>nav li {
+    margin-left: 10px;
+    padding: 7px 20px;
+    list-style-type: none;
+    white-space: nowrap;
+}
+#homepage>nav li.active {
+    background-image: linear-gradient(90deg,#a09db7a0 20%,#2f2b45);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    
+}
+#homepage>nav li.active a {
+    color: white;
+} 
+#homepage>nav a {
+    text-decoration: none;
+    color: #a09db7;
+}
+#homepage>nav i {
+    padding-inline-end: 10px;
+} 
+#homepage>nav button {
+    background-color: transparent;
+    border: 1px dashed white;
+    margin-top: 10px;
+    margin-left: 30px;
+    padding: 5px 10px 7px 10px;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.song-profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.song-profile-img {
+    height: 6vh;
+    border-radius: 10px;
+}
+.song-details {
+    margin-left: 5px;
+    margin-right: 5vw;
+    white-space: nowrap;
+}
+.song-details div:nth-of-type(1){
+    font-size: 12px;   
+    color: #dbdbde;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.song-details div:nth-of-type(2){
+    font-size: 10px;
+    color: #a09db7;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    background-color: #1d1b2d;
+    padding: 10px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#music-controls input {
+    width: 30vw;
+    margin-inline: 20px;
+}
+#wishlist-control i:nth-of-type(1) {
+    display: none;
+    color: red;
+}
+#wishlist-control i:nth-of-type(2) {
+    display: block;
+}
+#wishlist-control:hover #remove-from-wishlist {
+    display: none;
+}
+#wishlist-control:hover #add-to-wishlist {
+    display: block;
+}
+#audio-controls {
+    margin-right: 30px;
+}

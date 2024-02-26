@@ -4,65 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muse - Music Player</title>
-
+    <link href="./external.css" rel="stylesheet" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            color: white;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        
+        #homepage>main {
+            background-color: #26223a;
+            width: 85vw;
         }
-
-        .song-profile {
+        header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-bottom: 1px solid #a09db73c;
+            margin-inline: 20px;
+        }
+        header img[src="./assets/user-avatar.png"] {
+            height: 50px;
+        }
+        main>header nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+        }
+        main>header nav li {
+            padding-block: 30px;
+            margin-inline: 15px;
+            list-style-type: none;
+        }
+        main>header nav li.active {
+            border-bottom: 3px solid white;
+        }
+        main>header nav a {
+            color: #a09db7;
+            text-decoration: none;
+        }
+        main>header nav li.active a {
+            color: white;
+            font-weight: bold;
+        }
+        header #userarea {
             display: flex;
             flex-direction: row;
             align-items: center;
         }
-        .song-profile-img {
-            height: 8vh;
-            border-radius: 10px;
+        #userinfo {
+            text-align: right;
         }
-        .song-details {
-            margin-left: 5px;
-            margin-right: 5vw;
+        #userinfo h4 {
+            font-weight: normal;
+            padding: 2px;
+        }
+        #user-dropdown {
+            position: relative;
+        }
+        #userinfo #drop-btn {
+            background-color: transparent;
+            color: #a09db7;
+            border: none;
+        }
+        #userinfo #drop-content {
+            display: none;
+            position: absolute; 
+            right: 0;
+            background-color: #a09db7;
+            border-radius: 10px;
+            padding: 10px;
             white-space: nowrap;
         }
-        .song-details div:nth-of-type(1){
-            font-size: 20px;   
-            color: #dbdbde;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        #userinfo #drop-content a {
+            display: block;
+            padding: 5px 10px;
         }
-        .song-details div:nth-of-type(2){
-            font-size: 15px;
-            color: #a09db7;
+        #userinfo #drop-content a:hover {
+            box-shadow: 5px 5px 8px #4f4d5b;
         }
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            background-color: #1d1b2d;
-            padding: 10px;
-            width: 100vw;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        #user-dropdown:hover #drop-content {
+            display: block;
         }
-
     </style>
 </head>
 <body>
     <section id="homepage">
-        <nav></nav>
+        <nav>
+            <img src="./assets/logo.png" alt="Music-logo" />
+            <div>
+                <h2>MENU</h2>
+                <li class="active"><a href="#"><i class="fa-solid fa-music"></i>Explore</i></a></li>
+                <li><a href="#"><i class="fa-solid fa-compact-disc"></i>Genres</i></a></li>
+                <li><a href="#"><i class="fa-solid fa-folder-open"></i>Albums</i></a></li>
+                <li><a href="#"><i class="fa-solid fa-microphone"></i>Artists</i></a></li>
+            </div>
+            <div>
+                <h2>LIBRARY</h2>
+                <li><a href="#"><i class="fa-solid fa-music"></i>Recent</i></a></li>
+                <li><a href="#"><i class="fa-solid fa-folder-open"></i>Albums</i></a></li>
+                <li><a href="#"><i class="fa-solid fa-heart"></i>Favourites</i></a></li>
+            </div>
+            <div>
+                <h2>PLAYLIST</h2>
+                <li><a href="#"><i class="fa-solid fa-circle-play"></i>Good Vibes</i></a></li>
+                <li><a href="#"><i class="fa-solid fa-circle-play"></i>Best Jazz</i></a></li>
+                <li><a href="#"><i class="fa-solid fa-circle-play"></i>Party Hard</i></a></li>
+                <button><i class="fa-solid fa-plus"></i>Create New</button>
+            </div>
+        </nav>
         <main>
             <header>
-                <nav></nav>
+                <nav>
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Pools</a></li>
+                    <li><a href="#">NFTs</a></li>
+                    <li><a href="#">Launchpool/Launchpad</a></li>
+                    <li><a href="#">Work with us</a></li>
+                </nav>
                 <div id="userarea">
-                    <div id="hero-section"></div>
-                    <div id="song-lists"></div>
+                    <div id="userinfo">
+                        <h4>Jerome</h4>
+                        <div id="user-dropdown">
+                            <button id="drop-btn">34nkljb23k4j233l <i class="fa-solid fa-caret-down"></i></button>
+                            <div id="drop-content">
+                                <a href="#">User profile</a>
+                                <a href="#">Settings</a>
+                                <a href="#">Notifications</a>
+                                <a href="#">Customer Care</a>
+                                <a href="#">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="./assets/user-avatar.png" />
                 </div>
             </header>
             <div id="music-section">
-                <div id="song-area"></div>
+                <div id="song-area">
+                    <div id="hero-section"></div>
+                    <div id="song-lists"></div>
+                </div>
                 <aside></aside>
             </div>
         </main>
@@ -83,8 +159,10 @@
             <i class="fa-solid fa-play"></i>
             <i class="fa-solid fa-pause"></i>
             <i class="fa-solid fa-forward-step"></i>
+            <input type="range" id="music-track" max="1000" min="0" />
+            <span>01:34/03:12</span>
         </div>
-        <input type="range" id="music-track" max="1000" min="0" />
+        
         <div id="wishlist-control">
             <i id="add-to-wishlist" class="fa-solid fa-heart"></i>
             <i id="remove-from-wishlist" class="fa-regular fa-heart"></i>
