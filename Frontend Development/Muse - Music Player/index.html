@@ -6,81 +6,116 @@
     <title>Muse - Music Player</title>
     <link href="./external.css" rel="stylesheet" />
     <style>
-        
-        #homepage>main {
+        #music-section {
+            display: flex;
+            flex-direction: row;
+            height: 80vh;
+        }
+        #music-section>#song-area {
+            width: 65vw;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+        #music-section>#song-area::-webkit-scrollbar {
             background-color: #26223a;
-            width: 85vw;
+            width: 8px;
         }
-        header {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            border-bottom: 1px solid #a09db73c;
-            margin-inline: 20px;
+        #music-section>#song-area::-webkit-scrollbar-thumb {
+            background-color: #a09db7;
+            border-radius: 5px;
         }
-        header img[src="./assets/user-avatar.png"] {
-            height: 50px;
+        #song-area>#hero-section {
+            margin: 30px;
+            position: relative;
+            height: 40vh;
+            background-image: linear-gradient(270deg,#b5adf3,#2f2b45);
+            border-radius: 20px;
         }
-        main>header nav {
-            display: flex;
-            flex-direction: row;
-            justify-content: start;
+        #song-area>#hero-section h3 {
+            font-weight: normal;
+            font-size: 25px;
+            display: inline-block;
+            margin-top: 20px;
+            margin-left: 30px;
         }
-        main>header nav li {
-            padding-block: 30px;
-            margin-inline: 15px;
-            list-style-type: none;
+        #song-area>#hero-section h1 {
+            font-size: 50px;
+            margin-top: 20px;
+            margin-left: 30px;
         }
-        main>header nav li.active {
-            border-bottom: 3px solid white;
-        }
-        main>header nav a {
-            color: #a09db7;
-            text-decoration: none;
-        }
-        main>header nav li.active a {
-            color: white;
-            font-weight: bold;
-        }
-        header #userarea {
+        #song-area>#hero-section #cta {
+            margin-top: 30px;
+            margin-left: 30px;
             display: flex;
             flex-direction: row;
             align-items: center;
         }
-        #userinfo {
-            text-align: right;
+        #song-area>#hero-section #cta button:nth-of-type(1) {
+            background-color: white;
+            border-radius: 30px;
+            padding: 10px 20px;
+            color: #2f2b45;
+            font-weight: 700;
         }
-        #userinfo h4 {
-            font-weight: normal;
-            padding: 2px;
-        }
-        #user-dropdown {
-            position: relative;
-        }
-        #userinfo #drop-btn {
+        #song-area>#hero-section #cta button:nth-of-type(2) {
             background-color: transparent;
-            color: #a09db7;
-            border: none;
+            border-radius: 30px;
+            padding: 10px 12px;
+            color: white;
+            border: 1px solid white;
+            margin-left: 20px;
         }
-        #userinfo #drop-content {
-            display: none;
-            position: absolute; 
+        #song-area>#hero-section #cta span {
+            display: block;
+            margin-left: 20px;
+        }
+        #song-area>#hero-section img {
+            position: absolute;
             right: 0;
-            background-color: #a09db7;
-            border-radius: 10px;
-            padding: 10px;
-            white-space: nowrap;
+            bottom: 0;
+            height: 45vh;
+            border-bottom-right-radius: 20px;
         }
-        #userinfo #drop-content a {
+        #music-section .song-area-lists {
+            margin: 30px;
+        }
+        .song-area-lists header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .song-area-lists h5 {
+            font-size: 20px;
+        }
+        .music-area-list {
+            display: flex;
+            flex-direction: row;
+        }
+        .music-area-list .music-area-item, .music-area-list .song-profile {
+            margin: 5px;
+        }
+        .music-area-list img {
+            width: 100%;
+            height: auto;
+        }
+        .music-area-list .music-details {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-size: 15px;
+        }
+        .music-area-list .music-details span {
+            font-size: 13px;
+            color: #a09db7;
+        }
+        .music-area-list .song-profile {
+            flex-direction: column;
+        }
+        .music-area-list .song-details {
             display: block;
-            padding: 5px 10px;
+            margin-left: 0;
         }
-        #userinfo #drop-content a:hover {
-            box-shadow: 5px 5px 8px #4f4d5b;
-        }
-        #user-dropdown:hover #drop-content {
-            display: block;
-        }
+    </style>
     </style>
 </head>
 <body>
@@ -136,10 +171,237 @@
             </header>
             <div id="music-section">
                 <div id="song-area">
-                    <div id="hero-section"></div>
-                    <div id="song-lists"></div>
+                    <div id="hero-section">
+                        <h3>Trending New Hits</h3>
+                        <h1>Break My Heart</h1>
+                        <h3>Dua Lipa</h3>
+                        <div id="cta">
+                            <button>Listen Now</button>
+                            <button><i class="fa-solid fa-heart"></i></button>
+                            <div id="cta-info">
+                                <span>+30% APR</span>
+                                <span>33M Streams</span>
+                            </div>
+                        </div>
+                        <img src="./assets/hero-img.png" />
+                    </div>
+                    <div id="top-artists" class="song-area-lists">
+                        <header>
+                            <h5>Top Artists</h5>
+                            <a href="#">See all</a>
+                        </header>
+                        <div class="music-area-list">
+                            <div class="music-area-item">
+                                <img class="music-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                                <div class="music-details">
+                                    <div>Kanye West</div>
+                                     <span class="music-views">30% APR</span>
+                                </div>
+                            </div>
+                            <div class="music-area-item">
+                                <img class="music-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                                <div class="music-details">
+                                    <div>Kanye West</div>
+                                     <span class="music-views">30% APR</span>
+                                </div>
+                            </div>
+                            <div class="music-area-item">
+                                <img class="music-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                                <div class="music-details">
+                                    <div>Kanye West</div>
+                                     <span class="music-views">30% APR</span>
+                                </div>
+                            </div>
+                            <div class="music-area-item">
+                                <img class="music-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                                <div class="music-details">
+                                    <div>Kanye West</div>
+                                     <span class="music-views">30% APR</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="new-hits" class="song-area-lists">
+                        <header>
+                            <h5>New Hits</h5>
+                            <a href="#">See all</a>
+                        </header>
+                        <div class="music-area-list">
+                            <div class="song-profile">
+                                <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                                <div class="song-details">
+                                    <div>Enemy</div>
+                                    <div>Imagine Dragons</div>
+                                </div>
+                            </div>
+                            <div class="song-profile">
+                                <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                                <div class="song-details">
+                                    <div>Enemy</div>
+                                    <div>Imagine Dragons</div>
+                                </div>
+                            </div>
+                            <div class="song-profile">
+                                <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                                <div class="song-details">
+                                    <div>Enemy</div>
+                                    <div>Imagine Dragons</div>
+                                </div>
+                            </div>
+                            <div class="song-profile">
+                                <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                                <div class="song-details">
+                                    <div>Enemy</div>
+                                    <div>Imagine Dragons</div>
+                                </div>
+                            </div>
+                            <div class="song-profile">
+                                <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                                <div class="song-details">
+                                    <div>Enemy</div>
+                                    <div>Imagine Dragons</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <aside></aside>
+                <aside>
+                    <h5>Hot Boosts</h5>
+                    <div>
+                        <div class="song-profile">
+                            <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                            <div class="song-details">
+                                <div>Enemy</div>
+                                <div>Imagine Dragons</div>
+                            </div>
+                            <span class="song-views">30% APR</span>
+                            <div id="control-underlay">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="song-profile">
+                            <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                            <div class="song-details">
+                                <div>Enemy</div>
+                                <div>Imagine Dragons</div>
+                            </div>
+                            <span class="song-views">30% APR</span>
+                            <div id="control-underlay">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="song-profile">
+                            <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                            <div class="song-details">
+                                <div>Enemy</div>
+                                <div>Imagine Dragons</div>
+                            </div>
+                            <span class="song-views">30% APR</span>
+                            <div id="control-underlay">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="song-profile">
+                            <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                            <div class="song-details">
+                                <div>Enemy</div>
+                                <div>Imagine Dragons</div>
+                            </div>
+                            <span class="song-views">30% APR</span>
+                            <div id="control-underlay">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="song-profile">
+                            <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                            <div class="song-details">
+                                <div>Enemy</div>
+                                <div>Imagine Dragons</div>
+                            </div>
+                            <span class="song-views">30% APR</span>
+                            <div id="control-underlay">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="song-profile">
+                            <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                            <div class="song-details">
+                                <div>Enemy</div>
+                                <div>Imagine Dragons</div>
+                            </div>
+                            <span class="song-views">30% APR</span>
+                            <div id="control-underlay">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="song-profile">
+                            <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                            <div class="song-details">
+                                <div>Enemy</div>
+                                <div>Imagine Dragons</div>
+                            </div>
+                            <span class="song-views">30% APR</span>
+                            <div id="control-underlay">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="song-profile">
+                            <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                            <div class="song-details">
+                                <div>Enemy</div>
+                                <div>Imagine Dragons</div>
+                            </div>
+                            <span class="song-views">30% APR</span>
+                            <div id="control-underlay">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="song-profile">
+                            <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                            <div class="song-details">
+                                <div>Enemy</div>
+                                <div>Imagine Dragons</div>
+                            </div>
+                            <span class="song-views">30% APR</span>
+                            <div id="control-underlay">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="song-profile">
+                            <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                            <div class="song-details">
+                                <div>Enemy</div>
+                                <div>Imagine Dragons</div>
+                            </div>
+                            <span class="song-views">30% APR</span>
+                            <div id="control-underlay">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="song-profile">
+                            <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                            <div class="song-details">
+                                <div>Enemy</div>
+                                <div>Imagine Dragons</div>
+                            </div>
+                            <span class="song-views">30% APR</span>
+                            <div id="control-underlay">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="song-profile">
+                            <img class="song-profile-img" src="./assets/song-label.jpeg" alt="song-label" />
+                            <div class="song-details">
+                                <div>Enemy</div>
+                                <div>Imagine Dragons</div>
+                            </div>
+                            <span class="song-views">30% APR</span>
+                            <div id="control-underlay">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
             </div>
         </main>
     </section>
