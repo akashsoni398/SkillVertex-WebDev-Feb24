@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Document</title>
+    <script src="./external.js"></script>
+    <script>
+    </script>
+</head>
+<body>
+    <p id="para">This is a paragraph</p>
+    <input type="text" name="input" id="input" />
+    <button onclick="Greet()" type="button">Click</button>
+    <script>
+        // single line comment
+
+        /* multiple 
+        line 
+        comment */
+
+        // storage
+            let x = "using let keyword";  // block scope
+            var y = "using var keyword";
+            const z = "using const keyword";  // block scope
+
+            // variable scopes - global, local, parameter, block
+
+            const a = 100;  // global scope variable
+
+            function sample(param) {   // parameter scope variable
+                console.log(a+param);
+                const b = 300;     // local scope variable
+                const x = 10000;   // block scope variable
+                console.log(x);
+            }
+            sample(32);
+            sample(64);
+
+            {
+                let j = 1000;
+                var i =1001;
+                console.log(j);
+                console.log(i);
+            }
+            console.log(i);
+
+
+            let num1 = 100;
+            console.log(num1+=10);
+            const num2 = 200;
+            console.log(num2+=10);
+
+            
+        // input / output
+
+        // operators
+
+        // branching
+
+        // looping 
+
+        // functions
+
+    </script>
+</body>
+</html>
