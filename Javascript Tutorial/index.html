@@ -9,7 +9,7 @@
     </script>
 </head>
 <body>
-    <p id="para">This is a paragraph</p>
+    <p id="para"><b>This is a paragraph</b></p>
     <input type="text" name="input" id="input" />
     <button onclick="Greet()" type="button">Click</button>
     <script>
@@ -20,39 +20,97 @@
         comment */
 
         // storage
-            let x = "using let keyword";  // block scope
-            var y = "using var keyword";
-            const z = "using const keyword";  // block scope
+            // data types
+                let string = "String data";
+                let number = 32323;
+                let float = 23434.33;
+                let boolean = true;
+                let num_as_str = "43534534";
+
+                let array = [45345,"Ggfdgdfg",true, function myfunc() {}, { key: "value" }]
+                let object = {
+                    usno: 45345,
+                    name: "Ggfdgdfg",
+                    passout: true,
+                    myfunc() {
+                        return this.name;
+                    },
+                    object: {
+                        key2: "value" 
+                    }
+                }
+
+                let funcName = () => {
+                    return null;
+                }
 
             // variable scopes - global, local, parameter, block
+                let x = "using let keyword";  // global scope
+                var y = "using var keyword";  // global scope
+                const z = "using const keyword";  // global scope
 
-            const a = 100;  // global scope variable
+                const a = 100;  // global scope variable
 
-            function sample(param) {   // parameter scope variable
-                console.log(a+param);
-                const b = 300;     // local scope variable
-                const x = 10000;   // block scope variable
-                console.log(x);
-            }
-            sample(32);
-            sample(64);
+                function sample(param) {   // parameter scope variable
+                    console.log(a+param);
+                    const b = 300;     // local scope variable
+                    const x = 10000;   // block scope variable
+                    console.log(x);
+                }
+                sample(32);
+                sample(64);
 
-            {
-                let j = 1000;
-                var i =1001;
-                console.log(j);
+                {
+                    let j = 1000;    // block scope
+                    var i =1001;     // global scope
+                    console.log(j);
+                    console.log(i);
+                }
                 console.log(i);
-            }
-            console.log(i);
 
-
-            let num1 = 100;
-            console.log(num1+=10);
-            const num2 = 200;
-            console.log(num2+=10);
+                let num1 = 100;
+                console.log(num1+=10);
+                const num2 = 200;
+                // error: assignment to constant variable
+                // console.log(num2+=10);
 
             
         // input / output
+            // selector
+                document.getElementById("")
+                document.getElementsByClassName("")
+                document.getElementsByName("")
+                document.getElementsByTagName("")
+                document.getSelection("")
+
+            // dom input
+                let dom_input = document.getElementById("para").innerHTML;
+                document.getElementById("para").innerText;
+                
+            // user input through forms
+                let user_input = document.getElementById("input").value;
+
+            // user input through events
+                document.getElementById("input").addEventListener("dblclick",() => {
+                    document.getElementById("input").style.border = "2px solid red";
+                    document.getElementById("input").blur()
+                })
+
+            // console output
+                console.log("Message");
+                console.error("Error message");
+
+            // dom output
+                document.getElementById("para").innerText = "<i>HEllo World</i>";
+                document.getElementById("para").innerHTML = "<i>HEllo World</i>";
+
+                document.write("This is added content");
+                let textNode = document
+                document.body.appendChild(textNode);
+
+            // notifications
+
+            // window output
 
         // operators
 
@@ -61,7 +119,16 @@
         // looping 
 
         // functions
+            // using function keyword
+                function funcName2() {
 
+                }
+            
+            // lambda function
+                let funcName3 = () => {
+
+                }
+        // js events
     </script>
 </body>
 </html>
