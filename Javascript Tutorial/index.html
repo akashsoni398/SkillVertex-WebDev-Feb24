@@ -17,7 +17,7 @@
 
         /* multiple 
         line 
-        comment */
+        comment
 
         // storage
             // data types
@@ -105,29 +105,174 @@
                 document.getElementById("para").innerHTML = "<i>HEllo World</i>";
 
                 document.write("This is added content");
-                let textNode = document
-                document.body.appendChild(textNode);
+                
+                const paragraph = document.createElement('p');
+                paragraph.textContent = "This is a new paragraph";
+                document.body.appendChild(paragraph);
 
             // notifications
+                window.alert("This is an alert");
+
+                let confirmation = window.confirm("Are you sure?")
+                if(confirmation==true) {
+                    document.write("File deleted");
+                }
+                else {
+                    document.write("File not deleted");
+                }
+
+                let confirm = window.prompt("Are you sure? Write 'yes' to confirm!")
+                if(confirm) {
+                    if(confirm.toUpperCase()=='YES') {
+                    document.write("File deleted");
+                    }
+                    else {
+                        document.write("File not deleted");
+                    }
+                }
+                else {
+                        document.write("File not deleted");
+                    }
 
             // window output
+                 window.print()
+
+                  */
 
         // operators
+            // artimetic operators ( +, -, *, /, %, ++, -- )
+                let mod;
+                console.log(++mod);
+                console.log(mod++);
 
-        // branching
+            // comparison operators ( > < >= <= == === != !== )
+                    let val1 = 10; let val2 = 20; let val3 = 30;
+                    console.log(val1!=val2)
 
-        // looping 
+            // logical operators ( && || ! )
+                console.log((val1<val2) && (val2<val3) && (val1<val3))
+                console.log(!mod)
+
+            // assignment operators ( = += -= *= /= )
+                val1 = 10; val2 = 20; val3 = 30;
+
+                let sum = val1+val2+val3;
+                val3 -= val1;
+                val3 += val2;        
+
+            // conditional operator (condition) ? true stmt : false stmt;
+                console.log((val1>val2) ? "value 1 is greater" : "value 2 is greater");
+                
+            // nullish coalescing operator(??)
+                    let x = student.middleName ?? "default name"
+                    console.log(x);
+                     
+
+        // branching - if stmt, if...else stmt, if...else if...else stmt, switch case
+            let i = 1000;   
+
+            if(i<100) 
+            {
+                console.log("i less than 100")
+            }
+
+            if(i<100) 
+            {
+                console.log("i less than 100")
+            }else if(i>100)
+             {
+               console.log("i is more than 100")    
+            }
+            else {
+                console.log("i is equal to 100")
+            }
+
+            if(i<=100) 
+            {
+                console.log("i less than 100")
+            }
+            else {
+                console.log("i is more than 100")
+            }
+
+            let grade = 'b+';
+            switch(grade.toUpperCase()) {
+                case 'A+':
+                    console.log("marks in the range of 95-100");
+                    break
+                case 'A-':
+                console.log("marks in the range of 90-95");
+                    break
+                case 'B+':
+                    console.log("MArks in the range of 85 to 90");
+                    break
+                case 'B-':
+                    console.log("marks in the range of 80 to 85")
+                    break
+                case 'C':
+                    console.log("MArks in the range of 70 to 80");
+                    break
+                case 'D':
+                    console.log("marks in the range of 60-70")
+                    break
+                case 'E':
+                    console.log("MArks in the range of 80 to 85");
+                    break
+                case 'A-':
+                    console.log("marks in the range of 90-100")
+                    break
+                case 'B+':
+                    console.log("MArks in the range of 80 to 85");
+                    break
+                default:
+                    console.log("Grade entered is incorrect")
+
+            }
+
+
+        // looping - for loop, while loop, do...while loop, for...of loop and for...in loop
+            let j = 0;
+            while(j<=50) {
+                (j%2==0) ? console.log(j) : null ;
+                j++;
+            } 
+
+            for(let j = 0; j<=50; j++) {
+                (j%2!=0) ? console.log(j) : null ;
+            }
+
+            j=0;
+            do {
+                (j%2==0) ? console.log(j) : null ;
+                j++;
+            }
+            while(j<=50)
+
+            let arr = [23432,545345,true, false,"234324","Hello"];
+            for(let value of arr) {
+                console.log(value)
+            }
+
+            for(let value in student) {
+                console.log(value+": "+student[value]);
+            }
 
         // functions
             // using function keyword
-                function funcName2() {
-
+                function funcName2(param) {
+                    return param;
                 }
             
             // lambda function
-                let funcName3 = () => {
-
+                let funcName3 = (param) => {
+                    return param;
                 }
+            
+            // callback function
+            
+            // JS APIs
+
+            // 3rd party APIs
         // js events
     </script>
 </body>
