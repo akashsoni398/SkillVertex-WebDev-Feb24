@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Editor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- add note button -->
+    <div class="container-fluid text-center my-5 p-0">
+        <button type="button" class="btn btn-primary px-4 py-3 text-light" data-bs-toggle="modal" data-bs-target="#add-note-modal">
+            <i class="bi bi-file-earmark-plus"></i>
+            Add New Note
+        </button>
+    </div>
+
+    <!-- note cards -->
+    <div class="container-fluid text-center px-5" id="notes-container">
+        <h1>No Notes available at the moment.</h1>
+    </div>
+
+    <!-- add note modal -->
+    <div class="modal fade" id="add-note-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Adding a new note</h1>
+                <button type="button" id="add-note-close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Note Title</label>
+                    <input type="text" required id="add-note-title" class="form-control" id="exampleFormControlInput1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Note Content</label>
+                    <div class="input-group">
+                        <textarea id="add-note-content" onkeyup="contentOnAddText()" class="form-control" aria-label="With textarea" rows="5"></textarea>
+                        <span id="add-note-content-label" class="input-group-text">0/250</span>
+                    </div>
+                </div>   
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" id="add-note-submit" onclick="AddNote()">Create Note</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- edit note modal -->
+    <div class="modal fade" id="edit-note-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Editing note</h1>
+                <button type="button" id="edit-note-close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Note Title</label>
+                    <input type="text" required id="edit-note-title" class="form-control" id="exampleFormControlInput1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Note Content</label>
+                    <div class="input-group">
+                        <textarea id="edit-note-content" onkeyup="contentOnAddText()" class="form-control" aria-label="With textarea" rows="5"></textarea>
+                        <span class="input-group-text">0/250</span>
+                    </div>
+                </div>   
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" id="edit-note-submit">Save Changes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    <!-- delete note modal -->
+    <div class="modal fade" id="delete-note-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Deleting note</h1>
+                <button type="button" id="delete-note-close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure about deleting the modal titled "<span id="delete-note-title"></span>".</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" id="delete-note-submit">Delete Note</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    <script>
+        const RefreshNotes = () => {
+            let idb = indexedDB.open("Notes-Editor",2);
+
+            idb.onupgradeneeded = () => {
+                let res = idb.result;
+                let os = res.createObjectStore('notes',{autoIncrement:true});
+            }
+
+            idb.onsuccess = () => {
+                let noteCard = "";
+                let res = idb.result;
+                let tx = res.transaction("notes",'readonly');
+                let store = tx.objectStore('notes');
+                let cursor = store.openCursor();
+
+                cursor.onsuccess = () => {
+                    let note = cursor.result;
+                    if(note) {
+                        document.getElementById("notes-container").innerHTML = `<div id="notes" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"></div>`;
+                        noteCard += 
+                        `
+                        <div class="col" id="note-${note.key}">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">${note.value.noteTitle}</h5>
+                                    <p class="card-text text-start">${note.value.noteContent}</p>
+                                </div>
+                                <div class="card-footer container-fluid px-3 pb-1 pt-0">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <small class="text-body-secondary">${note.value.noteDateTime}</small>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center">
+                                        <div class="col p-0">
+                                            <button class="btn btn-warning container-fluid" onclick="editNote(${note.key})" data-bs-toggle="modal" data-bs-target="#edit-note-modal">
+                                                Edit
+                                            </button>
+                                        </div>
+                                        <div class="col p-0">
+                                            <button class="btn btn-danger container-fluid" onclick="deleteNote(${note.key})" data-bs-toggle="modal" data-bs-target="#delete-note-modal">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                        note.continue();
+                        document.getElementById("notes").innerHTML = noteCard;
+                    }
+                }
+            }
+
+            idb.onerror = () => {
+                console.log("Database could not be created");
+            }
+        }
+
+        const AddNote = () => {
+            let noteTitle = document.getElementById("add-note-title").value;
+            let noteContent = document.getElementById("add-note-content").value;
+            let noteDateTime = new Date().toLocaleString();
+
+            let idb = indexedDB.open("Notes-Editor",2);
+
+            idb.onsuccess = () => {
+                let res = idb.result;
+                let tx = res.transaction('notes','readwrite');
+                let store = tx.objectStore('notes');
+                store.put({
+                    noteTitle: noteTitle,
+                    noteContent: noteContent,
+                    noteDateTime: noteDateTime
+                })
+            }
+            
+            document.getElementById("add-note-title").value = "";
+            document.getElementById("add-note-content").value = "";
+            document.getElementById("add-note-close").click();
+            RefreshNotes();
+        }
+
+        const editNote = (key) => {
+            let idb = indexedDB.open("Notes-Editor",2);
+
+            idb.onsuccess = () => {
+                let res = idb.result;
+                let tx = res.transaction("notes",'readonly');
+                let store = tx.objectStore('notes');
+                let selectedNote = store.get(key);
+
+                selectedNote.onsuccess = () => {
+                    document.getElementById("edit-note-title").value = selectedNote.result.noteTitle;
+                    document.getElementById("edit-note-content").value = selectedNote.result.noteContent;
+                }
+            }
+
+            document.getElementById("edit-note-submit").onclick = () => {
+                let noteTitle = document.getElementById("edit-note-title").value;
+                let noteContent = document.getElementById("edit-note-content").value;
+                let noteDateTime = new Date().toLocaleString();
+
+                let idb = indexedDB.open("Notes-Editor",2);
+
+                idb.onsuccess = () => {
+                    let res = idb.result;
+                    let tx = res.transaction('notes','readwrite');
+                    let store = tx.objectStore('notes');
+                    store.put({
+                        noteTitle: noteTitle,
+                        noteContent: noteContent,
+                        noteDateTime: noteDateTime
+                    }, key)
+                }
+                document.getElementById("edit-note-title").value = "";
+                document.getElementById("edit-note-content").value = "";
+                document.getElementById("edit-note-close").click();
+                RefreshNotes();
+            }
+        }
+
+        const deleteNote = (key) => {
+            let idb = indexedDB.open("Notes-Editor",2);
+
+            idb.onsuccess = () => {
+                let res = idb.result;
+                let tx = res.transaction("notes",'readonly');
+                let store = tx.objectStore('notes');
+                let selectedNote = store.get(key);
+
+                selectedNote.onsuccess = () => {
+                    document.getElementById("delete-note-title").innerText = selectedNote.result.noteTitle;
+                }
+            }
+
+            document.getElementById("delete-note-submit").onclick = () => {
+                let idb = indexedDB.open("Notes-Editor",2);
+
+                idb.onsuccess = () => {
+                    let res = idb.result;
+                    let tx = res.transaction('notes','readwrite');
+                    let store = tx.objectStore('notes');
+                    store.delete(key);
+                }
+                document.getElementById("delete-note-close").click();
+                location.reload();
+            }
+        }
+
+        const contentOnAddText = () => {
+            let text = document.getElementById("add-note-content").value;
+            document.getElementById("add-note-content-label").innerHTML = text.length+"/250";
+            let TA = document.getElementById("add-note-content");
+            if(text.length > 250) {
+                TA.classList.add("border");
+                TA.classList.add("border-3");
+                TA.classList.add("border-danger");
+                document.getElementById("add-note-submit").classList.add("disabled");
+            }
+            else {
+                TA.classList.remove("border");
+                TA.classList.remove("border-3");
+                TA.classList.remove("border-danger");
+                document.getElementById("add-note-submit").classList.remove("disabled");
+            }
+        }
+
+        const contentOnEditText = () => {
+            document.getElementById("")
+        }
+
+        RefreshNotes();
+    </script>
+</body>
+</html>

@@ -11,13 +11,14 @@
 <body>
     <p id="para"><b>This is a paragraph</b></p>
     <input type="text" name="input" id="input" />
-    <button onclick="Greet()" type="button">Click</button>
+    <button onkeypress="" onclick="funcName3('call from event')" type="button">Click</button>
     <script>
         // single line comment
 
         /* multiple 
         line 
         comment
+        */
 
         // storage
             // data types
@@ -137,7 +138,7 @@
             // window output
                  window.print()
 
-                  */
+                 
 
         // operators
             // artimetic operators ( +, -, *, /, %, ++, -- )
@@ -256,10 +257,10 @@
             for(let value in student) {
                 console.log(value+": "+student[value]);
             }
-
         // functions
             // using function keyword
                 function funcName2(param) {
+                    // lines of code
                     return param;
                 }
             
@@ -267,13 +268,45 @@
                 let funcName3 = (param) => {
                     return param;
                 }
+
+                funcName2("Hello")
             
             // callback function
+                document.getElementById("para").addEventListener("click", () => {
+                    document.getElementById("para").innerText = "Click detected";
+                })
             
             // JS APIs
 
             // 3rd party APIs
+            async function getTrainData() {
+                const url = 'https://irctc1.p.rapidapi.com/api/v3/trainBetweenStations?fromStationCode=BBS&toStationCode=SBC&dateOfJourney=2024-03-20';
+                const options = {
+                    method: 'GET',
+                    headers: {
+                        'X-RapidAPI-Key': '7144c97388mshb68467971a1757ap175b47jsneb0cfe5300f7',
+                        'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
+                    }
+                };
+
+                try {
+                    const response = await fetch(url, options);
+                    const result = response.text();
+                    console.log(result);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+
+            getTrainData();
+
+            
+
         // js events
+            document.getElementById("para").addEventListener("click", () => {
+                document.getElementById("para").innerText = "Click detected";
+            })
+            document.getElementById("para").removeEventListener('click');
     </script>
 </body>
 </html>
